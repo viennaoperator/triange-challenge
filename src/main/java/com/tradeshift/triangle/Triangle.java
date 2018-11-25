@@ -2,11 +2,11 @@ package com.tradeshift.triangle;
 
 public class Triangle {
 
-    private int lengthA;
-    private int lengthB;
-    private int lengthC;
+    private float lengthA;
+    private float lengthB;
+    private float lengthC;
 
-    public Triangle(int lengthA, int lengthB, int lengthC) {
+    public Triangle(float lengthA, float lengthB, float lengthC) {
         if(lengthA < 1 || lengthB < 1 || lengthC < 1) throw new TriangleException("lengths of triangle can't be negative");
         this.lengthA = lengthA;
         this.lengthB = lengthB;

@@ -9,3 +9,6 @@ gradlew run
 
 # Run Tests
 gradlew test
+
+## Possible improvements
+- Use logger instead of Console

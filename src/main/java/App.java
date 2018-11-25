@@ -2,52 +2,45 @@ import com.tradeshift.triangle.Triangle;
 
 import java.util.Scanner;
 
+import static com.tradeshift.util.ConsoleUtil.GetUserInputAsFloat;
+
 public class App {
 
-    private static int lengthA;
-    private static int lengthB;
-    private static int lengthC;
+    private static Triangle triangle;
     public static Scanner in;
 
     public static void main(String[] args) {
+        Initialise();
+        PrintHello();
+        GetUserInput();
+        PrintResult();
+        Exit();
+    }
+
+    private static void Initialise() {
         in = new Scanner(System.in);
+    }
+
+    private static void PrintHello() {
         System.out.println("Welcome to the triangle app!");
         System.out.println("The application is going to tell you wheiter your triangle is equilateral, isoceles or scalene!");
         System.out.println("Please provide your 3 triangle lengths:");
-        GetUserInput();
-        Triangle triangle = new Triangle(lengthA, lengthB, lengthC);
-        System.out.println("Your triangle is a " + triangle.getType().name());
-        in.nextLine();
     }
 
     public static void GetUserInput() {
-        lengthA = GetUserInputAsInt("length a:");
-        lengthB = GetUserInputAsInt("length b:");
-        lengthC = GetUserInputAsInt("length c:");
+        float lengthA = GetUserInputAsFloat("length a:", in);
+        float lengthB = GetUserInputAsFloat("length b:", in);
+        float lengthC = GetUserInputAsFloat("length c:", in);
+        triangle = new Triangle(lengthA, lengthB, lengthC);
     }
 
-    public static int GetUserInputAsInt(String message) {
-        System.out.println(String.format("Please provide %s", message));
-        int inputNumber = 0;
-        while(inputNumber == 0) {
-            inputNumber = ReadNumberFromConsole();
-        }
-        return inputNumber;
+    private static void PrintResult() {
+        System.out.println("Your triangle is a " + triangle.getType().name());
     }
 
-    public static int ReadNumberFromConsole() {
-        try {
-            String input = in.nextLine();
-            int inputNumber = Integer.parseInt(input);
-            if(inputNumber < 1) {
-                System.out.println("Only positive numbers are allowed!");
-                return 0;
-            }
-            return inputNumber;
-        }
-        catch(NumberFormatException e) {
-            System.out.println("Only numbers are allowed!");
-            return 0;
-        }
+    private static void Exit() {
+        System.out.println("Press key to exit!");
+        in.next();
     }
+
 }
